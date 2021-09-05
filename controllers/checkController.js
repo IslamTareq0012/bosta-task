@@ -1,5 +1,7 @@
 const Check = require('../models/checkModel');
 const poolRequest = require('../models/poolRequestModel');
+const mail = require('../utils/Pooling/Notificaions/mail');
+const webhook = require('../utils/Pooling/Notificaions/webhook');
 
 const base = require('./baseController');
 
@@ -65,6 +67,8 @@ exports.testPool = async (req, res, next) => {
             headers: checkHeaders
         };
         var poolingMngr = new poolingProcess(check,requestURL, axiosConfig, req);
+        poolingMngr.subscribe(mail);
+        poolingMngr.subscribe(webhook);
         poolingMngr.loopPooling();
         res.send("Pooling Just Started .... !");
     } catch (err) {
