@@ -64,8 +64,8 @@ exports.testPool = async (req, res, next) => {
             timeout: check.timeout,
             headers: checkHeaders
         };
-        var poolingMngr = new poolingProcess(check);
-        poolingMngr.runPooling(requestURL, axiosConfig, req);
+        var poolingMngr = new poolingProcess(check,requestURL, axiosConfig, req);
+        poolingMngr.loopPooling();
         res.send("Pooling Just Started .... !");
     } catch (err) {
         next(err);
