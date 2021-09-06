@@ -77,8 +77,6 @@ exports.testPool = async (req, res, next) => {
 
 }
 
-//TODO :
-//Enhancement : Use pipeline aggregation
 exports.checksReport = async (req, res, next) => {
 
     if (!req.body.tags || req.body.tags.length == 0) {
@@ -151,7 +149,7 @@ exports.checksReport = async (req, res, next) => {
     else {
         var ReportCheckKeyValue = [];
 
-        var checkCursor = await Check.find({tags: { $in: req.body.tags } });
+        var checkCursor = await Check.find({user : req.user.id,tags: { $in: req.body.tags } });
 
         for (let index = 0; index < checkCursor.length; index++) {
             var result = {};

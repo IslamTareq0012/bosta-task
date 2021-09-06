@@ -72,13 +72,9 @@ class poolingProcess {
         var time = performance.now();
 
         this.getData(requestURL, axiosConfig).then(function ({ data }) {
-            var mailUtils = new MailUtils();
-
             if (!this.checkIsDown(data)) {
-
                 //***********************CHECK POOL DOWN RECROD MUST SAVED HERE !!!************************* */
-
-                var Request = RequestsRecords.create({
+                RequestsRecords.create({
                     check: this.check._id,
                     isUp: false,
                     DateTimeCreated: Date.now(),
@@ -87,9 +83,6 @@ class poolingProcess {
 
                 }).catch(err => {
                 });
-
-
-
                 //Run observers
                 this.fire(this.check , {
                     isUP: false,
@@ -100,8 +93,7 @@ class poolingProcess {
 
             } else {
                 //***********************CHECK POOL UP RECROD MUST SAVED HERE !!!************************* */    
-
-                var Request = RequestsRecords.create({
+                RequestsRecords.create({
                     check: this.check._id,
                     isUp: true,
                     DateTimeCreated: Date.now(),
@@ -121,7 +113,6 @@ class poolingProcess {
         });
 
     }
-
     checkIsDown(data) {
         return data.status != this.check.assertCode && (this.check.assertCode != "" && this.check.assertCode);
     }
