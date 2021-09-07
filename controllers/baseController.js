@@ -78,7 +78,7 @@ exports.getOne = Model => async (req, res, next) => {
 
 exports.getAll = Model => async (req, res, next) => {
     try {
-        const features = new APIFeatures(Model.find(), req.query)
+        const features = new APIFeatures(Model.find({user:req.user.id}), req.query)
             .sort()
             .paginate();
 

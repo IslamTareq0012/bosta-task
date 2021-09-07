@@ -82,10 +82,8 @@ class poolingProcess {
 
             var currentStatus = requestsCursor[0].isUp;
             if (!this.checkIsDown(data)) {
-
                 //***********************CHECK POOL DOWN RECROD MUST SAVED HERE !!!************************* */
-
-                var Request = RequestsRecords.create({
+                RequestsRecords.create({
                     check: this.check._id,
                     isUp: false,
                     DateTimeCreated: Date.now(),
@@ -111,8 +109,7 @@ class poolingProcess {
 
             } else {
                 //***********************CHECK POOL UP RECROD MUST SAVED HERE !!!************************* */    
-
-                var Request = RequestsRecords.create({
+                RequestsRecords.create({
                     check: this.check._id,
                     isUp: true,
                     DateTimeCreated: Date.now(),
@@ -135,7 +132,6 @@ class poolingProcess {
         });
 
     }
-
     checkIsDown(data) {
         return data.status != this.check.assertCode && (this.check.assertCode != "" && this.check.assertCode);
     }
