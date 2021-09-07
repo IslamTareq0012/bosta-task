@@ -35,10 +35,10 @@ class poolingProcess {
         })
     }
 
-    fire(check,notifyData, thisObj) {
+    fire(check, notifyData, thisObj) {
         this.observers.forEach(fn => {
             console.log(fn);
-            fn.call(thisObj,check,notifyData)
+            fn.call(thisObj, check, notifyData)
         })
     }
 
@@ -72,8 +72,15 @@ class poolingProcess {
         var time = performance.now();
 
         this.getData(requestURL, axiosConfig).then(function ({ data }) {
-            var mailUtils = new MailUtils();
 
+
+
+            var requestsCursor = await RequestsRecords.find({ check: req.body.id }, {
+                "_id": 0,
+                "__v": 0,
+            });
+
+            var currentStatus = requestsCursor[0].isUp;
             if (!this.checkIsDown(data)) {
 
                 //***********************CHECK POOL DOWN RECROD MUST SAVED HERE !!!************************* */
@@ -89,13 +96,17 @@ class poolingProcess {
                 });
 
 
+                if (currentStatus) {
+                    //Run observers
+                    this.fire(this.check, {
+                        isUP: false,
+                        user: req.user,
+                        requestURL: requestURL
+                    }, this)
+                }
 
-                //Run observers
-                this.fire(this.check , {
-                    isUP: false,
-                    user: req.user,
-                    requestURL: requestURL
-                },this)
+
+
                 return this.delayPromise(this.check.interval).then(this.runPooling(requestURL, axiosConfig, req));
 
             } else {
@@ -110,12 +121,15 @@ class poolingProcess {
 
                 }).catch(err => {
                 });
-                //Run observers
-                this.fire(this.check , {
-                    isUP: true,
-                    user: req.user,
-                    requestURL: requestURL
-                },this)
+
+                if (!currentStatus) {
+                    //Run observers
+                    this.fire(this.check, {
+                        isUP: true,
+                        user: req.user,
+                        requestURL: requestURL
+                    }, this)
+                }
             }
         }.bind(this)).catch(err => {
         });

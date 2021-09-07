@@ -13,6 +13,7 @@ Bosta Task Project
 - Enviroment Varaibles
 - handling error outside Express
 - Catching Uncaught Exception
+- Observer design pattern used to make multiple notifiers.
 - Sign-up with email verification.
 - Stateless authentication using JWT.
 - Users can create a check to monitor a given URL if it is up or down.
