@@ -5,6 +5,8 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cors = require('cors');
+const swaggerUI = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
 
 
 const userRoutes = require('./routes/userRoutes');
@@ -12,6 +14,31 @@ const checkRouters = require('./routes/checkRoutes');
 const globalErrHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 const app = express();
+
+//swagger configs
+
+const options = {
+	definition: {
+		openapi: "3.0.0",
+		info: {
+			title: "Library API",
+			version: "1.0.0",
+			description: "A simple Express Library API",
+		},
+		servers: [
+			{
+				url: "http://localhost:3000",
+			},
+		],
+	},
+	apis: ["./routes/*.js"],
+};
+
+const specs = swaggerJsDoc(options);
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+
+
 
 // Allow Cross-Origin requests
 app.use(cors());

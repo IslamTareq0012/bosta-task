@@ -75,9 +75,12 @@ class poolingProcess {
 
 
 
-            var requestsCursor = await RequestsRecords.find({ check: req.body.id }, {
+            var requestsCursor = RequestsRecords.find({ check: req.body.id }, {
                 "_id": 0,
                 "__v": 0,
+            }).then(x => {
+
+            }).catch(err => {
             });
 
             var currentStatus = requestsCursor[0].isUp;
