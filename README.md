@@ -29,3 +29,40 @@ Bosta Task Project
 - routes -> userRoutes.js: The goal of the route is to guide the request to the correct handler function which will be in one of the controllers
 - controllers -> userController.js: Handle the application request, interact with models and send back the response to the client 
 - models -> userModel.js: (Business logic) related to business rules, how the business works and business needs ( Creating new user in the database, checking if the user password is correct, validating user input data)
+
+- utils -> Folder to contains all tools and shared code to the whole project.
+
+
+# Endpoints Curl Calls
+
+## Checks
+
+### Create Check
+```bash
+curl --location --request POST 'http://localhost:3000/api/v1/checks/createCheck' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzQ4NjhkOTU4MTE2MWFhODU4NWUxZCIsImVtYWlsIjoiaXNsYW1fZWxtYXNyeUBob3RtYWlsLmNvbSIsImlhdCI6MTYzMDgzMjMxMSwiZXhwIjoxNjMzNDI0MzExfQ.FtZG7blVSxPjEFtwIhvk0MuI6NAD9n8c81jiBhMMrAM' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "islam-check",
+    "url": "www.google.com",
+    "protocol": "HTTPS",
+    "path": "",
+            "Port": 1000,
+            "webhook": "https://webhook.site/c56f64e1-999a-4a3a-9c65-721f613d1e9f",
+            "timeout": "10000",
+            "interval": 600000,
+            "threshold": 1,
+            "authentication": {
+                "name":"islam",
+                "password":"1234566"
+            },
+            "headers": [{
+                "name":"header1",
+                "value":"value1"
+            }],
+            "assertCode": 200,
+            "tags": ["tag1"],
+            "ignoreSSL": false,
+            "user": "6134868d9581161aa8585e1d"
+}'
+```
