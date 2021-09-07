@@ -66,3 +66,21 @@ curl --location --request POST 'http://localhost:3000/api/v1/checks/createCheck'
             "user": "6134868d9581161aa8585e1d"
 }'
 ```
+
+
+### Pool a Check
+```bash
+curl --location --request GET 'http://localhost:3000/api/v1/checks/test?id=613489ad9581161aa8585e1f' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzQ4NjhkOTU4MTE2MWFhODU4NWUxZCIsImVtYWlsIjoiaXNsYW1fZWxtYXNyeUBob3RtYWlsLmNvbSIsImlhdCI6MTYzMDgzMjMxMSwiZXhwIjoxNjMzNDI0MzExfQ.FtZG7blVSxPjEFtwIhvk0MuI6NAD9n8c81jiBhMMrAM'
+```
+
+## User Endpoint
+
+``` bash
+curl --location --request POST 'http://localhost:3000/api/v1/users/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "islam_elmasry@hotmail.com",
+    "password": "123456789"
+}'
+```
