@@ -68,7 +68,7 @@ curl --location --request POST 'http://localhost:3000/api/v1/checks/createCheck'
 ```
 
 
-### Create Check
+### Edit Check
 ```bash
 curl --location --request PUT 'http://localhost:3000/api/v1/checks/updatecheck?id=613270a3a4f1942c24a29f9b' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzQ4NjhkOTU4MTE2MWFhODU4NWUxZCIsImVtYWlsIjoiaXNsYW1fZWxtYXNyeUBob3RtYWlsLmNvbSIsImlhdCI6MTYzMDgzMjMxMSwiZXhwIjoxNjMzNDI0MzExfQ.FtZG7blVSxPjEFtwIhvk0MuI6NAD9n8c81jiBhMMrAM' \
