@@ -67,7 +67,7 @@ describe('Tasks API', () => {
 
 
     describe("PUT /api/v1/checks/updatecheck?id=613270a3a4f1942c24a29f9b", () => {
-        it("It should create a check", (done) => {
+        it("It should edit a check", (done) => {
             chai.request(server)
                 .put("/api/v1/checks/updatecheck?id=613270a3a4f1942c24a29f9b")
                 .set({ "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzQ4NjhkOTU4MTE2MWFhODU4NWUxZCIsImVtYWlsIjoiaXNsYW1fZWxtYXNyeUBob3RtYWlsLmNvbSIsImlhdCI6MTYzMDgzMjMxMSwiZXhwIjoxNjMzNDI0MzExfQ.FtZG7blVSxPjEFtwIhvk0MuI6NAD9n8c81jiBhMMrAM"  })
@@ -103,7 +103,7 @@ describe('Tasks API', () => {
 
 
     describe("GET /api/v1/checks/test?id=613489ad9581161aa8585e1f", () => {
-        it("It should GET all the checks", (done) => {
+        it("It pool a check", (done) => {
             chai.request(server)
                 .get("/api/v1/checks/test?id=613489ad9581161aa8585e1f")
                 .set({ "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzQ4NjhkOTU4MTE2MWFhODU4NWUxZCIsImVtYWlsIjoiaXNsYW1fZWxtYXNyeUBob3RtYWlsLmNvbSIsImlhdCI6MTYzMDgzMjMxMSwiZXhwIjoxNjMzNDI0MzExfQ.FtZG7blVSxPjEFtwIhvk0MuI6NAD9n8c81jiBhMMrAM"  })
